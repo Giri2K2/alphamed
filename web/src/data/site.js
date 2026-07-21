@@ -1,9 +1,13 @@
 export const CONTACT = {
   phone: '+91 89250 27219',
   phoneHref: 'tel:+918925027219',
-  whatsapp: '+996 505 452 685',
+  whatsapp: '+91 89250 27219',
   whatsappHref: 'https://wa.me/996505452685',
-  email: 'alphamed.educonsultancy@gmail.com',
+  email: 'alphamed.educonsultancy@gmail.com, alphamed_educonsultancy@yahoo.com',
+  emails: [
+    { address: 'alphamed.educonsultancy@gmail.com', provider: 'Gmail' },
+    { address: 'alphamed_educonsultancy@yahoo.com', provider: 'Yahoo' },
+  ],
   instagram: '@alphamed_educonsultancy',
   instagramHref: 'https://instagram.com/alphamed_educonsultancy',
 };

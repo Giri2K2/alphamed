@@ -33,7 +33,7 @@ const Reveal = ({ children, className, delay = 0 }) => (
 );
 
 const NAV = [
-  ['About', 'about'], ['Destinations', 'destinations'], ['Services', 'services'],
+  ['Home', 'top'], ['About Us', 'about'], ['Destinations', 'destinations'], ['Services', 'services'],
   ['Process', 'process'], ['Gallery', 'gallery'], ['FAQ', 'faq'], ['Contact', 'contact'],
 ];
 
@@ -65,7 +65,7 @@ const HomePage = () => {
         <div className="mx-auto flex max-w-[90rem] items-center justify-between px-5 py-4">
           <button onClick={() => go('top')} className="flex items-center gap-2 text-white">
           <img src="/images/logo.png" alt="AlphaMed Logo" className="h-24 w-auto object-contain" />
-            <span className="block text-[30px] font-display text-lg font-semibold leading-tight">AlphaMed<span className="block text-[20px] font-sans font-bold tracking-widest text-gold">EDU CONSULTANCY</span></span>
+            <span className="block text-[45px] font-display text-lg font-semibold leading-tight">AlphaMed<span className="block text-[20px] font-sans font-semibold leading-tight">Edu Consultancy</span></span>
           </button>
           <nav className="hidden items-center gap-7 lg:flex">
             {NAV.map(([label, id]) => (
@@ -89,7 +89,7 @@ const HomePage = () => {
 
       {/* Hero */}
       <section id="top" className="relative flex min-h-[100dvh] items-center overflow-hidden bg-navy-deep">
-        <img src="https://images.hostinger.com/0b077be2-afdc-4f77-ad62-3f233393324f.png" alt="Medical student in white coat" className="absolute inset-0 h-full w-full object-cover object-center opacity-40" />
+        <img src="/images/background.png" alt="Medical student in white coat" className="absolute inset-0 h-full w-full object-cover object-center opacity-90" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-navy-deep/30" />
         <div className="relative mx-auto grid w-full max-w-[90rem] gap-10 px-5 pt-28 pb-16 lg:grid-cols-2">
           <div className="max-w-2xl">
@@ -97,13 +97,21 @@ const HomePage = () => {
               className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-sm font-medium text-gold">
               <Star className="h-4 w-4 fill-gold" /> NMC / WHO approved universities
             </motion.span>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-4 flex flex-wrap gap-3">
+              {['✓ Visa Assistance', '✓ Hostel Support', '✓ Airport Pickup'].map((badge) => (
+                <span key={badge} className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80">
+                  {badge}
+                </span>
+              ))}
+            </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-6 font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl">
-              Guiding Doctors to a <span className="text-gold">Global Future</span>
+              Study MBBS Abroad at <span className="text-gold">Top Medical Universities</span>
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-5 text-lg text-white/80 sm:text-xl">
-              Study MBBS Abroad with Expert Guidance.
+              Your trusted partner for MBBS abroad admissions, visa assistance and student support.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -115,7 +123,7 @@ const HomePage = () => {
               </a>
             </motion.div>
             <div className="mt-10 flex gap-8">
-              {[['5+', 'Countries'], ['20+', 'Universities'], ['1000+', 'Students placed']].map(([n, l]) => (
+              {[['5+', 'Countries'], ['20+', 'Universities'], ['1000+', 'Students placed'], ['100%', 'Admission Support']].map(([n, l]) => (
                 <div key={l}>
                   <div className="font-display text-3xl font-bold text-gold">{n}</div>
                   <div className="text-sm text-white/70">{l}</div>
@@ -323,10 +331,18 @@ const HomePage = () => {
                 <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10"><MessageCircle className="h-5 w-5" /></span>
                 <span><span className="block text-sm text-white/50">WhatsApp</span>{CONTACT.whatsapp}</span>
               </a>
-              <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-4 text-white/85 transition hover:text-gold">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10"><Mail className="h-5 w-5" /></span>
-                <span><span className="block text-sm text-white/50">Email</span>{CONTACT.email}</span>
-              </a>
+              {CONTACT.emails.map((email) => (
+                <a key={email.address} href={`mailto:${email.address}`} className="flex items-center gap-4 text-white/85 transition hover:text-gold">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10">
+                    {email.provider === 'Gmail' ? (
+                      <Mail className="h-5 w-5" />
+                    ) : (
+                      <span className="font-display font-bold text-gold text-lg">Y</span>
+                    )}
+                  </span>
+                  <span><span className="block text-sm text-white/50">{email.provider}</span>{email.address}</span>
+                </a>
+              ))}
               <a href={CONTACT.instagramHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-white/85 transition hover:text-gold">
                 <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10"><Instagram className="h-5 w-5" /></span>
                 <span><span className="block text-sm text-white/50">Instagram</span>{CONTACT.instagram}</span>
@@ -361,7 +377,7 @@ const HomePage = () => {
           <div className="flex items-center gap-4">
             <a href={CONTACT.instagramHref} target="_blank" rel="noopener noreferrer" className="hover:text-gold"><Instagram className="h-5 w-5" /></a>
             <a href={CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-gold"><MessageCircle className="h-5 w-5" /></a>
-            <a href={`mailto:${CONTACT.email}`} className="hover:text-gold"><Mail className="h-5 w-5" /></a>
+            <a href={`mailto:${CONTACT.emails[0].address}`} className="hover:text-gold"><Mail className="h-5 w-5" /></a>
           </div>
         </div>
       </footer>
