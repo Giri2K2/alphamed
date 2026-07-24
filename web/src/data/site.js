@@ -74,24 +74,6 @@ export const DESTINATIONS = [
     fee: 'From $5,000 / year',
     universities: [
       {
-        name: 'Tbilisi State Medical University',
-        campus: 'Tbilisi, Georgia',
-        website: 'https://tsmu.edu/',
-        description: 'One of Georgia’s top medical schools, offering English MBBS and strong clinical rotations across city teaching hospitals.',
-        about: 'Tbilisi State Medical University is Georgia’s oldest and most prestigious medical institution, known for its high academic standards, accredited English-language MBBS programmes, and active international student support.',
-        programs: [
-          {
-            title: 'MBBS in General Medicine (English Medium: 6 Years)',
-            desc: 'A fully English-medium MBBS programme with integrated practical training, research opportunities, and a degree recognised for licensing exams worldwide.',
-          },
-          {
-            title: 'Clinical Internship Year',
-            desc: 'A final-year internship with hands-on rotations in major teaching hospitals, preparing students for international medical licensing and practice.',
-          },
-        ],
-        notes: 'TSMU is recognised by WHO, MCI/NMC, and offers support for international students including hostel placement and visa guidance.',
-      },
-      {
         name: 'Batumi Shota Rustaveli State University',
         campus: 'Batumi, Georgia',
         description: 'A trusted choice for international students seeking affordable, globally recognised medical education.',
@@ -114,6 +96,13 @@ export const DESTINATIONS = [
         description: 'A WHO- and NMC-approved medical faculty offering English and Russian medium MBBS programmes and postgraduate training.',
         about: `IMF of Osh State University (Oshsu), a medical institute which is one of the country's oldest higher education institutions and is situated in the south Kyrgyzstan. The university is now recognized as one of the top universities in Southern Kyrgyzstan. On the foundation of the Osh Pedagogical Institute, it was founded in 1951. Initially, there were five faculties. By Presidential Decree, the Institute was renamed Osh State University in 1992. Osh State University's Medical Institute has become the largest university in the country. The university's structure consists of three research institutes, 12 faculties, 93 departments, and 27 educational, academic and international centers. More than 1,500 teachers are employed by the Medical Institute at Osh State University. That included more than 120 professors, 300 associate professors, and PhD holders, as well as one corresponding member of the National Academy of Sciences, the Academy of KR, and international academies. At the Medical Institute, Osh State university more than 7,000 students are currently enrolled in 72 majors. The majority of them (1259) are students from India and the United States, Bangladesh, Korea, China, Russia, Kazakhstan, Uzbekistan, Turkmenistan, Pakistan, Nepal, Turkey, Syria, Bangladesh, Russia, China, and other nations. The Medical Institute at Osh State University has a robust technology park with more than 2,000 modern machines for use in the educational process. In order to achieve excellence in the educational activities of the university, the Medical Institute at Osh State University takes part in international programme and projects like TEMPUS, USAID, ACCELS, DAAD, IREX, Soros-KYRGYZSTAN, INTAS, etc. Students are given access to services like library science, which has a book collection with more than 1 million copies, to ensure they receive a high-quality education. A teaching service offers 20 reading rooms and three central libraries. The university bought a recreation area on the banks of the river Ak-Buura in Osh and a recreation center on the shores of Issyk-Kul Lake for the use of its students and faculty members. Working dispensary to promote the students' health and leisure. The Osh State University has eight dorms, 19 academic buildings, and hotels for visiting professors. Everything is in place for the educational process to be carried out successfully and for students, staff, and teachers to get a restful sleep. Medical Institute, Osh State University was granted License No. 352 by the Ministry of Education and Science in order to conduct educational activities.`,
                 notes: 'Recognised by WHO and ranked among Kyrgyzstan’s leading medical institutions with strong global research and academic partnerships.',
+      },
+      {
+        name: 'Jalal Abad State University',
+        campus: 'Jalal-Abad, Kyrgyzstan',
+        website: 'https://jalalabadstate.university/',
+        description: 'Jalal-Abad State University (JASU) is located in the city of Jalal-Abad in the Kyrgyz Republic (Kyrgyzstan). The main campus and administrative offices are situated at 57 Lenin Street, Jalal-Abad, 715600, Kyrgyz Republic.',
+        about: `Welcome to Jalal-Abad State University Named after B. Osmonov, established in 1993 as a distinguished institution dedicated exclusively to providing exceptional medical education. Our university offers prestigious programs leading to the degrees of M.B.B.S. and M.D., preparing students for successful careers in the dynamic and rewarding field of medicine. Focused on academic excellence, hands-on clinical experience, and ethical practice, Jalal-Abad State University ensures comprehensive training through rigorous coursework, immersive clinical rotations, and state-of-the-art facilities. With esteemed faculty members nurturing intellectual curiosity and critical thinking skills, our diverse student body gains a global perspective on healthcare while fostering collaboration and compassionate care. As graduates, our students emerge as skilled and compassionate physicians ready to make a meaningful impact in the lives of their patients and communities. Join us on the path to becoming a medical professional at Jalal-Abad State University Named after B. Osmonov.`,
       }
     ],
   },
@@ -142,18 +131,10 @@ export const DESTINATIONS = [
     fee: 'From $3,800 / year',
     universities: [
       {
-        name: 'Al-Farabi Kazakh National Medical University',
-        campus: 'Almaty, Kazakhstan',
-        website: 'https://kaznmu.edu.kz/en',
-        description: 'A top medical university in Kazakhstan offering English-medium MBBS programmes with global accreditation.',
-        about: 'Al-Farabi Kazakh National Medical University is a leading research-driven institution with modern facilities, international recognition, and strong clinical training.',
-      },
-      {
-        name: 'Astana Medical University',
-        campus: 'Nur-Sultan, Kazakhstan',
-        website: 'https://astanamedical.edu.kz/en',
-        description: 'Modern campus with strong research focus and practical clinical training for international students.',
-        about: 'Astana Medical University provides contemporary medical education, research opportunities, and clinical attachments in Nur-Sultan’s health system.',
+        name: 'Coming Soon',
+        campus: '',
+        description: 'More colleges and courses coming soon — stay tuned!',
+        comingSoon: true,
       },
     ],
   },

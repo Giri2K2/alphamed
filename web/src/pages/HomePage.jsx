@@ -89,6 +89,13 @@ const HomePage = () => {
         )}
       </header>
 
+      {/* Coming Soon banner */}
+      <div className="w-full bg-gold text-navy-deep">
+        <div className="mx-auto max-w-[90rem] px-5 py-2 text-center text-sm font-semibold">
+          COMING SOON — New colleges and courses will be available shortly. Stay tuned!
+        </div>
+      </div>
+
       {/* Hero */}
       <section id="top" className="relative flex min-h-[100dvh] items-center overflow-hidden bg-navy-deep">
         <img src="/images/background.png" alt="Medical student in white coat" className="absolute inset-0 h-full w-full object-cover object-center opacity-90" />
@@ -194,6 +201,10 @@ const HomePage = () => {
                   onClick={() => {
                     setSelectedDestination(d);
                     setSelectedUniversity(d.universities?.[0] || null);
+                    // scroll to the country colleges block
+                    setTimeout(() => {
+                      document.getElementById('country-colleges')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 80);
                   }}
                   className={`group h-full text-left overflow-hidden rounded-2xl border p-0 transition duration-300 ${selectedDestination?.name === d.name ? 'border-gold bg-white/10 shadow-lg shadow-gold/10' : 'border-white/10 bg-white/[0.03] hover:border-gold hover:bg-white/5'}`}
                 >
@@ -213,7 +224,7 @@ const HomePage = () => {
               </Reveal>
             ))}
           </div>
-          <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/5 p-8">
+          <div id="country-colleges" className="mt-10 rounded-[2rem] border border-white/10 bg-white/5 p-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-medium uppercase tracking-widest text-gold">Country Colleges</p>
@@ -234,6 +245,18 @@ const HomePage = () => {
               <div className="mt-10 grid gap-6 xl:grid-cols-2">
                 {selectedDestination.universities.map((u, idx) => {
                   const isLastOdd = selectedDestination.universities.length % 2 === 1 && idx === selectedDestination.universities.length - 1;
+                  const isComing = u.comingSoon;
+                  if (isComing) {
+                    return (
+                      <div
+                        key={`coming-${idx}`}
+                        className={`rounded-3xl border border-gold/60 bg-white/5 p-8 text-center transition duration-200 ${isLastOdd ? 'xl:col-span-2' : ''}`}
+                      >
+                        <h3 className="text-3xl font-display font-bold text-gold">COMING SOON</h3>
+                        <p className="mt-3 text-white/70 text-lg">{u.description}</p>
+                      </div>
+                    );
+                  }
                   return (
                     <button
                       key={u.name}
@@ -269,11 +292,32 @@ const HomePage = () => {
                           <img src="/images/osu2.png" alt="OSU students" className="w-full h-48 md:h-64 rounded-md object-cover" />
                         </div>
                       )}
+                      {u.name && u.name.includes('Jalal') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/jas.png" alt="Jalal Abad State University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/jas1.png" alt="Jalal Abad State University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/jas2.png" alt="Jalal Abad State University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
                       {u.name && u.name.includes('Perm State Medical') && (
                         <div className="mt-6 grid w-full grid-cols-3 gap-3">
                           <img src="/images/psmu.png" alt="Perm State Medical University" className="w-full h-64 rounded-md object-cover" />
                           <img src="/images/psmu1.png" alt="Perm State Medical University campus" className="w-full h-64 rounded-md object-cover" />
                           <img src="/images/psmu2.png" alt="Perm State Medical University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Mari State') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/marsu.png" alt="Mari State University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/marsu1.png" alt="Mari State University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/marsu2.png" alt="Mari State University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Yaroslavl') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/ysmu.png" alt="Yaroslavl State Medical University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/ysmu1.png" alt="Yaroslavl State Medical University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/ysmu2.png" alt="Yaroslavl State Medical University students" className="w-full h-64 rounded-md object-cover" />
                         </div>
                       )}
                       {u.name && u.name.includes('Orenburg State') && (
@@ -283,11 +327,25 @@ const HomePage = () => {
                           <img src="/images/osm2.png" alt="Orenburg State Medical University students" className="w-full h-64 rounded-md object-cover" />
                         </div>
                       )}
+                      {u.name && u.name.includes('Pskov') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/psu.png" alt="Pskov State University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/psu1.png" alt="Pskov State University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/psu2.png" alt="Pskov State University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Tver') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/tsm.png" alt="Tver State Medical University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/tsm1.png" alt="Tver State Medical University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/tsm2.png" alt="Tver State Medical University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
                       {u.name && u.name.includes('Batumi') && (
                         <div className="mt-6 grid w-full grid-cols-3 gap-3">
                           <img src="/images/bsm.png" alt="Batumi Shota Rustaveli" className="w-full h-64 rounded-md object-cover" />
                           <img src="/images/bsm2.png" alt="Batumi Shota Rustaveli 2" className="w-full h-64 rounded-md object-cover" />
-                          <img src="/images/bsm3.png" alt="Batumi Shota Rustaveli 3" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/bsm1.png" alt="Batumi Shota Rustaveli 3" className="w-full h-64 rounded-md object-cover" />
                         </div>
                       )}
                       {u.name && u.name.includes('Bukhara') && (
