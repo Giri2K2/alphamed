@@ -232,17 +232,29 @@ const HomePage = () => {
             </div>
             {selectedDestination ? (
               <div className="mt-10 grid gap-6 xl:grid-cols-2">
-                {selectedDestination.universities.map((u) => (
-                  <button
-                    key={u.name}
-                    type="button"
-                    onClick={() => setSelectedUniversity(u)}
-                    className={`rounded-3xl border p-6 text-left transition duration-200 ${selectedUniversity?.name === u.name ? 'border-gold bg-white/10 shadow-lg shadow-gold/10' : 'border-white/10 bg-navy-deep/80 hover:border-gold hover:bg-white/5'}`}
-                  >
+                {selectedDestination.universities.map((u, idx) => {
+                  const isLastOdd = selectedDestination.universities.length % 2 === 1 && idx === selectedDestination.universities.length - 1;
+                  return (
+                    <button
+                      key={u.name}
+                      type="button"
+                      onClick={() => setSelectedUniversity(u)}
+                      className={`rounded-3xl border p-6 text-left transition duration-200 ${isLastOdd ? 'xl:col-span-2' : ''} ${selectedUniversity?.name === u.name ? 'border-gold bg-white/10 shadow-lg shadow-gold/10' : 'border-white/10 bg-navy-deep/80 hover:border-gold hover:bg-white/5'}`}
+                    >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <h4 className="text-xl font-semibold text-white">{u.name}</h4>
                         {u.campus && <p className="mt-2 text-sm text-white/65">{u.campus}</p>}
+                        {u.website && (
+                          <a
+                            href={u.website}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="mt-2 inline-block text-sm font-medium text-gold hover:text-white"
+                          >
+                            Visit website
+                          </a>
+                        )}
                       </div>
                       {u.duration && <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">{u.duration}</span>}
                     </div>
@@ -250,6 +262,41 @@ const HomePage = () => {
                     <div className="mt-6 rounded-3xl border-t border-white/10 pt-6 text-white/75">
                       <p className="font-medium uppercase tracking-widest text-gold">About the College</p>
                       <p className="mt-4 text-white/75">{u.about || u.description}</p>
+                      {u.name && u.name.includes('Osh State') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/osu.png" alt="OSU" className="w-full h-48 md:h-64 rounded-md object-cover" />
+                          <img src="/images/osu1.png" alt="OSU campus" className="w-full h-48 md:h-64 rounded-md object-cover" />
+                          <img src="/images/osu2.png" alt="OSU students" className="w-full h-48 md:h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Perm State Medical') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/psmu.png" alt="Perm State Medical University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/psmu1.png" alt="Perm State Medical University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/psmu2.png" alt="Perm State Medical University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Orenburg State') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/osm.png" alt="Orenburg State Medical University" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/osm1.png" alt="Orenburg State Medical University campus" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/osm2.png" alt="Orenburg State Medical University students" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Batumi') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/bsm.png" alt="Batumi Shota Rustaveli" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/bsm2.png" alt="Batumi Shota Rustaveli 2" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/bsm3.png" alt="Batumi Shota Rustaveli 3" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
+                      {u.name && u.name.includes('Bukhara') && (
+                        <div className="mt-6 grid w-full grid-cols-3 gap-3">
+                          <img src="/images/bsm.png" alt="Bukhara 1" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/bsm1.png" alt="Bukhara 2" className="w-full h-64 rounded-md object-cover" />
+                          <img src="/images/bsm2.png" alt="Bukhara 3" className="w-full h-64 rounded-md object-cover" />
+                        </div>
+                      )}
                       {u.highlights?.length > 0 && (
                         <div className="mt-4 space-y-3 text-sm text-white/70">
                           <p className="font-semibold text-white">Highlights:</p>
@@ -273,7 +320,7 @@ const HomePage = () => {
                       {u.notes && <p className="mt-5 text-sm text-white/60">{u.notes}</p>}
                     </div>
                   </button>
-                ))}
+                )})}
               </div>
             ) : (
               <p className="mt-8 text-white/70">No country selected yet. Click any destination card to view the colleges available there.</p>
