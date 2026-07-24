@@ -40,6 +40,8 @@ const NAV = [
 const HomePage = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [selectedDestination, setSelectedDestination] = useState(null);
+  const [selectedUniversity, setSelectedUniversity] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -180,11 +182,21 @@ const HomePage = () => {
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="font-medium uppercase tracking-widest text-gold">Study Destinations</p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Where you can study MBBS</h2>
+            <div className="mt-4 inline-flex items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-5 py-3 text-center text-lg font-semibold text-white shadow-lg shadow-gold/10 sm:text-xl">
+              Click the country to view the college services we are providing.
+            </div>
           </Reveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {DESTINATIONS.map((d, i) => (
               <Reveal key={d.name} delay={(i % 3) * 0.08}>
-                <div className="group h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedDestination(d);
+                    setSelectedUniversity(d.universities?.[0] || null);
+                  }}
+                  className={`group h-full text-left overflow-hidden rounded-2xl border p-0 transition duration-300 ${selectedDestination?.name === d.name ? 'border-gold bg-white/10 shadow-lg shadow-gold/10' : 'border-white/10 bg-white/[0.03] hover:border-gold hover:bg-white/5'}`}
+                >
                   <div className="relative h-48 overflow-hidden">
                     <img src={d.image} alt={d.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-deep to-transparent" />
@@ -197,9 +209,75 @@ const HomePage = () => {
                     </div>
                     <p className="mt-3 text-white/70">{d.blurb}</p>
                   </div>
-                </div>
+                </button>
               </Reveal>
             ))}
+          </div>
+          <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="font-medium uppercase tracking-widest text-gold">Country Colleges</p>
+                <h3 className="mt-3 font-display text-3xl font-bold text-white">
+                  {selectedDestination ? `Colleges in ${selectedDestination.name}` : 'Click a country above to view colleges'}
+                </h3>
+                <p className="mt-3 max-w-3xl text-white/70">
+                  {selectedDestination ? selectedDestination.detailBlurb : 'Select a country card to see the medical universities we support in that destination.'}
+                </p>
+              </div>
+              {selectedDestination && (
+                <span className="inline-flex rounded-full bg-gold/10 px-4 py-2 text-sm font-semibold text-gold">
+                  {selectedDestination.name}
+                </span>
+              )}
+            </div>
+            {selectedDestination ? (
+              <div className="mt-10 grid gap-6 xl:grid-cols-2">
+                {selectedDestination.universities.map((u) => (
+                  <button
+                    key={u.name}
+                    type="button"
+                    onClick={() => setSelectedUniversity(u)}
+                    className={`rounded-3xl border p-6 text-left transition duration-200 ${selectedUniversity?.name === u.name ? 'border-gold bg-white/10 shadow-lg shadow-gold/10' : 'border-white/10 bg-navy-deep/80 hover:border-gold hover:bg-white/5'}`}
+                  >
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h4 className="text-xl font-semibold text-white">{u.name}</h4>
+                        {u.campus && <p className="mt-2 text-sm text-white/65">{u.campus}</p>}
+                      </div>
+                      {u.duration && <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">{u.duration}</span>}
+                    </div>
+                    <p className="mt-4 text-white/70">{u.description}</p>
+                    <div className="mt-6 rounded-3xl border-t border-white/10 pt-6 text-white/75">
+                      <p className="font-medium uppercase tracking-widest text-gold">About the College</p>
+                      <p className="mt-4 text-white/75">{u.about || u.description}</p>
+                      {u.highlights?.length > 0 && (
+                        <div className="mt-4 space-y-3 text-sm text-white/70">
+                          <p className="font-semibold text-white">Highlights:</p>
+                          <ul className="list-disc space-y-1 pl-5">
+                            {u.highlights.map((highlight) => (
+                              <li key={highlight}>{highlight}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {u.programs?.length > 0 && (
+                        <div className="mt-5 space-y-5">
+                          {u.programs.map((program) => (
+                            <div key={program.title}>
+                              <h5 className="text-lg font-semibold text-white">{program.title}</h5>
+                              <p className="mt-2 text-white/70">{program.desc}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {u.notes && <p className="mt-5 text-sm text-white/60">{u.notes}</p>}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-8 text-white/70">No country selected yet. Click any destination card to view the colleges available there.</p>
+            )}
           </div>
         </div>
       </section>
